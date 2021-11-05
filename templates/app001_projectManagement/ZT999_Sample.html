@@ -1,0 +1,191 @@
+{% extends "projectmanagementapp/T000_Base.html" %}
+<!-- <html-->
+    <!-- <header> -->
+        {% block head %}
+            {% load static %}
+            <link rel="stylesheet" href="{% static '/css/projectmanagement.css' %}">
+        {% endblock head %}
+    <!-- </header> -->
+    <!-- <body> -->
+        {% block header %}
+            <h1>サンプル画面</h1>
+        {% endblock header %}
+
+        {% block content %}
+            サンプル画面コンテンツ
+            {% if messages %}
+                <div class="messages">
+                    <br><!-- メッセージ表示エリア------------------------------------- -->
+                        {% for message in messages %}
+                            <br>{{ message }}
+                        {% endfor %}
+                    <br><!-- -------------------------------------------------------- -->
+                </div>
+            {% endif %}
+
+
+
+
+
+            
+            <!-- 旧コード -->
+            <br>----------------------------------------------------------------------------------------------
+            <br><div class="debug">S999検証</div>
+            {% if list_shitsmnIchirn %}
+                <div >
+                    {% for shitsmn in list_shitsmnIchirn %}
+                        <br>■{{ shitsmn.SHITSMN_TITLE}},{{ shitsmn.SHITSMN_NAIYO}}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S020検証</div>
+            {% if json_shitsmnInfo_S050_S020Kensho %}
+                <div >
+                    <br>■{{ json_shitsmnInfo_S050_S020Kensho.SHITSMN_TITLE}},{{ json_shitsmnInfo_S050_S020Kensho.SHITSMN_NAIYO}}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S030検証</div>
+            {% if json_shitsmnInfo_S050_S030Kensho %}
+                <div >
+                    <br>■{{ json_shitsmnInfo_S050_S030Kensho.SHITSMN_TITLE}},{{ json_shitsmnInfo_S050_S030Kensho.SHITSMN_NAIYO}}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S040検証</div>
+            {% if json_shitsmnInfo_S050_S040Kensho %}
+                <div >
+                    <br>■{{ json_shitsmnInfo_S050_S040Kensho.SHITSMN_TITLE}},{{ json_shitsmnInfo_S050_S040Kensho.SHITSMN_NAIYO}}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S050検証</div>
+            {% if json_shitsmnInfo %}
+                <div >
+                    <br>■{{ json_shitsmnInfo.SHITSMN_TITLE}},{{ json_shitsmnInfo.SHITSMN_NAIYO}}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S060検証</div>
+            {% if tuple_shitsmnList_shinchk %}
+                <div >
+                    {% for shitsmn_shinchk in tuple_shitsmnList_shinchk %}
+                        <br>■{{ shitsmn_shinchk.SHITSMN_TITLE}},{{ shitsmn_shinchk.SHITSMN_NAIYO}}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S070検証</div>
+            {% if tuple_T100_shitsmnList_jokn %}
+                <div >
+                    {% for shitsmn_jokn in tuple_T100_shitsmnList_jokn %}
+                        <br>■{{ shitsmn_jokn.SHITSMN_TITLE}},{{ shitsmn_jokn.SHITSMN_NAIYO}}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S080検証</div>
+            {% if tuple_hashTag_S080 %}
+                <div >
+                    {% for hashTag in tuple_hashTag_S080 %}
+                        <br>■{{ hashTag.HASHTAG}}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S090検証</div>
+            {% if tuple_M110_kaigiJiknList_S090 %}
+                <div >
+                    {% for kaigiJikn in tuple_M110_kaigiJiknList_S090 %}
+                        <br>■{{ kaigiJikn.KAIGJKN_CD}},{{ kaigiJikn.KAIGJKN_TIME}},{{ kaigiJikn.KAIGJKN_DISP}}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S095検証</div>
+            {% if tuple_M111_rqYukJiknList_S095 %}
+                <div >
+                    {% for yukjknInfo in tuple_M111_rqYukJiknList_S095 %}
+                        <br>■{{ yukjknInfo.YUKJKN_CD}},{{ yukjknInfo.YUKJKN_TIME}},{{ yukjknInfo.YUKJKN_DISP}}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S100検証</div>
+            {% if json_kaitRQInfo_S130_S100Kensho %}
+                <div >
+                    <br>■{{ json_kaitRQInfo_S130_S100Kensho.KAIT_USERID}},{{ json_kaitRQInfo_S130_S100Kensho.KAIT_USERCOMMENT}}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S120検証</div>
+            {% if json_kaitRQInfo_S130_S120Kensho %}
+                <div >
+                    <br>■{{ json_kaitRQInfo_S130_S120Kensho.KAIT_USERID}},{{ json_kaitRQInfo_S130_S120Kensho.KAIT_USERCOMMENT}}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S140検証</div>
+            {% if tuple_T120_kaitRQList_S140 %}
+                <div >
+                    {% for json_kaitRQInfo in tuple_T120_kaitRQList_S140 %}
+                        <br>■{{ json_kaitRQInfo.KAIT_USERID}},{{ json_kaitRQInfo.KAIT_USERCOMMENT}}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S150検証</div>
+            {% if json_shitsmnInfo_S180_S150Kensho %}
+                <div >
+                    <br>■{{ json_shitsmnInfo_S180_S150Kensho.USERNAME}},{{ json_shitsmnInfo_S180_S150Kensho.MAIL_ADDRESS}}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S160検証</div>
+            {% if json_shitsmnInfo_S180_S160Kensho %}
+                <div >
+                    <br>■{{ json_shitsmnInfo_S180_S160Kensho.USERNAME}},{{ json_shitsmnInfo_S180_S160Kensho.MAIL_ADDRESS}}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S170検証</div>
+            {% if json_shitsmnInfo_S180_S170Kensho %}
+                <div >
+                    <br>■{{ json_shitsmnInfo_S180_S170Kensho.USERNAME}},{{ json_shitsmnInfo_S180_S170Kensho.MAIL_ADDRESS}}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S180検証</div>
+            {% if json_userInfo_S180 %}
+                <div >
+                    <br>■{{ json_userInfo_S180.USERNAME}},{{ json_userInfo_S180.MAIL_ADDRESS}}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S185検証</div>
+            {% if str_userID_S185 %}
+                <div >
+                    <br>■{{ str_userID_S185 }}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S900検証</div>
+            {% if list_hanyoMst %}
+                <div >
+                    {% for hanyo in list_hanyoMst %}
+                        <br>■{{ hanyo.SECCD}},{{ hanyo.CD}},{{ hanyo.NAIYO01}}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+            <br><div class="debug">S905検証</div>
+            {% if str_newID %}
+                <div >
+                    {{str_newID}}
+                </div>
+            {% endif %}
+            <br>---------------------------------------------------------------------------------------------
+        {% endblock content %}
+    <!-- </body>>-->
+<!-- </html>-->

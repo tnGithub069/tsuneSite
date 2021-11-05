@@ -1,0 +1,47 @@
+{% extends "app001_projectManagement/T000_Base.html" %}
+<!-- <html-->
+
+<!-- <body> -->
+
+{% block header %}
+<h1>課題表</h1>
+{% endblock header %}
+{% block content %}
+
+<br>
+<!-- テーブルエリア -->
+<div class="container">
+    <div class="table-responsive">
+        {% if tuple_taskList %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>起票日</th>
+                    <th>期限日</th>
+                    <th>課題タイトル</th>
+                    <th>担当</th>
+                    <th>状態</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for taskInfo in tuple_taskList %}
+                <tr>
+                    <th scope="row">{{ taskInfo.SEQ }}</th>
+                    <td>{{ taskInfo.KIHYO_DATE | date:"y/m/d" }}</td>
+                    <td>{{ taskInfo.KIGN_DATE | date:"y/m/d" }}</td>
+                    <td ><a class="text-dark" href="{% url 'app001_projectManagement:taskDetail' request.session.urlID taskInfo.SEQ %}">{{ taskInfo.TASKTITLE }}</a></td>
+                    <td>{{ taskInfo.TANTSH }}</td>
+                    <td>{{ taskInfo.TASKSTATUS_NAME }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</div>
+<!-- テーブルエリア -->
+
+<br>
+<br>
+{% endblock content %}

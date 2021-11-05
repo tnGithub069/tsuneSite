@@ -1,0 +1,144 @@
+{% extends "app001_projectManagement/T000_Base.html" %}
+
+{% block head %}
+<script>
+    function taskCreate() {
+        document.getElementById('form').action = "{% url 'app001_projectManagement:taskCreate' request.session.urlID %}";
+        document.getElementById('form').submit();
+    }
+</script>
+{% endblock head %}
+
+{% block subtitle %}
+
+{% endblock subtitle %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row gx-3">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-8">
+            <div class="p-3 mb-2 bg-light text-dark">
+                <br>
+                <h2>新しい課題を追加</h2>
+                <br>
+                <form id='form' name='form' method="post">{% csrf_token %}
+                    <!--ボタン-->
+                    <div class="row justify-content-start">
+                        <div class="col-md-10">
+                            <!--位置調整用-->
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" onclick="taskCreate();"
+                                class="btn btn-primary btn-block">新規登録</button>
+                        </div>
+                    </div>
+                    <!--入力フォーム-->
+                    <div class="form-group">
+                        <label>タイトル：</label>
+                        <input type="text" id="taskTitle" name="taskTitle" class="form-control" value="タイトルを入力">
+                    </div>
+                    <br>
+                    <div class="row justify-content-start">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label>担当者：</label>
+                                <input type="text" id="taskTant" name="taskTant" class="form-control"
+                                    placeholder="担当者">
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <!--位置調整用-->
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>期限：</label>
+                                <input type="date" id="kignDate" name="kignDate" class="form-control"
+                                    value="{{todayDate}}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>ステータス：</label>
+                                <select class="form-control" id="taskStatus"  name="taskStatus">
+                                    <!-- ここの時間はDBから取得してfor文で回すように変更予定 -->
+                                    <option value= "0">起票</option>
+                                    {% for status in request.session.tuple_status %}
+                                    <option value= "{{status.CD}}">{{status.NAIYO01}}</option>
+                                    {% endfor %}
+                                    <!-- ここまで -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label>課題詳細：</label>
+                        <textarea class="form-control" id="taskDetail" name="taskDetail" rows="5"
+                            placeholder="課題の詳細内容を入力してください"></textarea>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label>対応内容：</label>
+                        <textarea class="form-control" id="taskNaiyo" name="taskNaiyo" rows="15"
+                            placeholder="対応内容を入力してください"></textarea>
+                    </div>
+                    <br>
+                    <div class="row justify-content-start">
+                        <div class="col-md-6">
+                            <button type="button" onclick="taskCreate();"
+                                class="btn btn-primary btn-block">新規登録</button>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="#">
+                                <button type="button" class="btn btn-muted btn-block">閉じる</button>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <!-- 一押し動画エリア ------------------------------------------------------------------------------->
+            <div class="p-3 mb-2 bg-light text-dark">
+                <h6>★今日の一押し★</h6>
+                <div class="video">
+                    <!-- <label>どこまでいってもにげてやる</label> -->
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/UKESIh9fEfA"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            <!-- 一押し動画エリア ------------------------------------------------------------------------------->
+            <br>
+            <!-- ニュースエリア ------------------------------------------------------------------------------->
+            <div class="p-3 mb-2 bg-light text-dark">
+                <div class="">
+                    <h5 class="tp_bg_newsAreaTitle">★新着ニュース</h5>
+                    {% for json_newsInfo in json_keibaInfo.list_news_Info_gokum %}
+
+                    <a class="text-decoration-none text-dark" href="{{json_newsInfo.newsURL}}" target="_blank">
+                        <div class="tp_bg_newsArea">
+                            <p>{{json_newsInfo.newsTitle}}</p>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- ニュースエリア ------------------------------------------------------------------------------->
+        </div>
+    </div>
+
+    <br>
+</div>
+
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,8 @@
+#root_tsuneSite
+tsuneSite/settings.py
+tsuneSite/__pycache__
+#app001
+app001_projectManagement/__pycache__
+app001_projectManagement/process/__pycache__
+#不要.vscode
+.vscode

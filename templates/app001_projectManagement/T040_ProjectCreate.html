@@ -1,0 +1,96 @@
+{% extends "app001_projectManagement/T000_Base.html" %}
+
+{% block head %}
+<script>
+    function projectCreate() {
+        document.getElementById('form').action = "{% url 'app001_projectManagement:projectCreate' %}";
+        document.getElementById('form').submit();
+    }
+</script>
+{% endblock head %}
+
+{% block subtitle %}
+
+{% endblock subtitle %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row gx-3">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-8">
+            <div class="p-3 mb-2 bg-light text-dark">
+                <br>
+                <h2>プロジェクト作成</h2>
+                <br>
+                <form id='form' name='form' method="post">{% csrf_token %}
+                    <div class="form-group">
+                        <label>プロジェクト名：</label>
+                        <input type="text" id="projectName" name="projectName" class="form-control" value="プロジェクト名を入力">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label>プロジェクトURL：</label>
+                        <input type="text" id="urlID" name="urlID" class="form-control" placeholder="#ProjectにアクセスするためのURL">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label>プロジェクト説明：</label>
+                        <textarea class="form-control" id="projectNaiyo" name="projectNaiyo" rows="15" placeholder="プロジェクトの概要を入力"></textarea>
+                    </div>
+                    <br>
+                    <div class="row justify-content-start">
+                        <div class="col-md-6">
+                            <button type="button" onclick="projectCreate();" class="btn btn-primary btn-block">新規登録</button>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="#">
+                                <button type="button" class="btn btn-muted btn-block">閉じる</button>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <!-- 一押し動画エリア ------------------------------------------------------------------------------->
+            <div class="p-3 mb-2 bg-light text-dark">
+                <h6>★今日の一押し★</h6>
+                <div class="video">
+                    <!-- <label>どこまでいってもにげてやる</label> -->
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/UKESIh9fEfA" title="YouTube video player"
+                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            <!-- 一押し動画エリア ------------------------------------------------------------------------------->
+            <br>
+            <!-- ニュースエリア ------------------------------------------------------------------------------->
+            <div class="p-3 mb-2 bg-light text-dark">
+                <div class="">
+                    <h5 class="tp_bg_newsAreaTitle">★新着ニュース</h5>
+                    {% for json_newsInfo in json_keibaInfo.list_news_Info_gokum %}
+
+                    <a class="text-decoration-none text-dark" href="{{json_newsInfo.newsURL}}" target="_blank">
+                        <div class="tp_bg_newsArea">
+                            <p>{{json_newsInfo.newsTitle}}</p>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- ニュースエリア ------------------------------------------------------------------------------->
+        </div>
+    </div>
+
+    <br>
+</div>
+
+
+
+
+
+{% endblock content %}

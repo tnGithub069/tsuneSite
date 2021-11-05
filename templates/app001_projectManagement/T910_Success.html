@@ -1,0 +1,21 @@
+{% extends "app001_projectManagement/T000_Base.html" %}
+<!-- <html-->
+<!-- <header> -->
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static '/css/teachersproject.css' %}">
+{% endblock head %}
+<!-- </header> -->
+<!-- <body> -->
+{% block header %}
+<h1></h1>
+{% endblock header %}
+
+{% block content %}
+
+<div class="container">
+    <a href="{% url 'app001_projectManagement:systemError' %}"><h4>Topページへ</h4></a>
+</div>
+{% endblock content %}
+<!-- </body>>-->
+<!-- </html>-->

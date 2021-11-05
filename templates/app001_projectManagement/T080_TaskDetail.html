@@ -1,0 +1,160 @@
+{% extends "app001_projectManagement/T000_Base.html" %}
+
+{% block head %}
+<script>
+    function updateTask() {
+        document.getElementById('form').action = "{% url 'app001_projectManagement:taskUpdate' request.session.urlID json_taskInfo_S130.SEQ %}";
+        document.getElementById('form').submit();
+    }
+    function deleteTask() {
+        if (confirm("削除します。よろしいですか？")) {
+            document.getElementById('form').action = "{% url 'app001_projectManagement:taskDelete' request.session.urlID json_taskInfo_S130.SEQ %}";
+            document.getElementById('form').submit();
+        }
+    }
+</script>
+{% endblock head %}
+
+{% block subtitle %}
+
+{% endblock subtitle %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row gx-3">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-8">
+            <div class="p-3 mb-2 bg-light text-dark">
+                <br>
+                <h2>課題詳細</h2>
+                <br>
+                <form id='form' name='form' method="post">{% csrf_token %}
+                    <!--ボタン-->
+                    <!--ボタン-->
+                    <div class="row justify-content-start">
+                        <div class="col-md-8">
+                            <label>No：{{json_taskInfo_S130.SEQ}}</label>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary btn-block"
+                                onclick="updateTask();">修正登録</button>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-danger btn-block" onclick="deleteTask();">　削除　</button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row justify-content-start">
+                        <div class="col-md-10">
+                            <!--位置調整用-->
+                        </div>
+                    </div>
+                    <!--入力フォーム-->
+                    <div class="form-group">
+                        <label>タイトル：</label>
+                        <input type="text" id="taskTitle" name="taskTitle" class="form-control"
+                            value="{{json_taskInfo_S130.TASKTITLE}}">
+                    </div>
+                    <br>
+                    <div class="row justify-content-start">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label>担当者：</label>
+                                <input type="text" id="taskTant" name="taskTant" class="form-control"
+                                    value="{{json_taskInfo_S130.TANTSH}}">
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <!--位置調整用-->
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>期限：</label>
+                                <input type="date" id="kignDate" name="kignDate" class="form-control"
+                                    value="{{json_taskInfo_S130.KIGN_DATE}}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>ステータス：</label>
+                                <select class="form-control" id="taskStatus" name="taskStatus">
+                                    <!-- ここの時間はDBから取得してfor文で回すように変更予定 -->
+                                    <option value="{{json_taskInfo_S130.TASKSTATUS}}">{{json_taskInfo_S130.TASKSTATUS_NAME}}
+                                    </option>
+                                    {% for status in request.session.tuple_status %}
+                                    <option value="{{status.CD}}">{{status.NAIYO01}}</option>
+                                    {% endfor %}
+                                    <!-- ここまで -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label>課題詳細：</label>
+                        <textarea class="form-control" id="taskDetail" name="taskDetail"
+                            rows="5">{{json_taskInfo_S130.TASKDETAIL}}</textarea>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label>対応内容：</label>
+                        <textarea class="form-control" id="taskNaiyo" name="taskNaiyo"
+                            rows="15">{{json_taskInfo_S130.NAIYO}}</textarea>
+                    </div>
+                    <br>
+                    <div class="row justify-content-start">
+                        <div class="col-md-6">
+                            <button type="button" onclick="updateTask();"
+                                class="btn btn-primary btn-block">修正登録する</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" onclick="deleteTask();"
+                                class="btn btn-danger btn-block">課題を削除する</button>
+                        </div>
+                    </div>
+            </div>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <!-- 一押し動画エリア ------------------------------------------------------------------------------->
+            <div class="p-3 mb-2 bg-light text-dark">
+                <h6>★今日の一押し★</h6>
+                <div class="video">
+                    <!-- <label>どこまでいってもにげてやる</label> -->
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/UKESIh9fEfA"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            <!-- 一押し動画エリア ------------------------------------------------------------------------------->
+            <br>
+            <!-- ニュースエリア ------------------------------------------------------------------------------->
+            <div class="p-3 mb-2 bg-light text-dark">
+                <div class="">
+                    <h5 class="tp_bg_newsAreaTitle">★新着ニュース</h5>
+                    {% for json_newsInfo in json_keibaInfo.list_news_Info_gokum %}
+
+                    <a class="text-decoration-none text-dark" href="{{json_newsInfo.newsURL}}" target="_blank">
+                        <div class="tp_bg_newsArea">
+                            <p>{{json_newsInfo.newsTitle}}</p>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- ニュースエリア ------------------------------------------------------------------------------->
+        </div>
+    </div>
+    <br>
+</div>
+
+
+
+
+
+{% endblock content %}

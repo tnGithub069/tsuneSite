@@ -1,0 +1,45 @@
+{% extends "teachersapp/T000_Base.html" %}
+
+<br>
+{% block content %}
+<!-- メッセージ表示エリア-------------------------------------------------- -->
+{% if messages %}
+<div class="container">
+    <div class="alert alert-info" role="alert">
+        <div class="row">
+            <div class="col-sm-12">
+                {% for message in messages %}
+                <p class="non_margen">{{ message }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<!-- メッセージ表示エリア-------------------------------------------------- -->
+<form class="px-4 py-3"  id='form' name='form' method="post" action="{% url 'teachersapp:login' %}">{% csrf_token %}
+    <div class="mb-3">
+        <label for="exampleDropdownFormEmail1" class="form-label">ログインID</label>
+        <input type="text" class="form-control" id="loginID" name="loginID" placeholder="email@example.com" value="{{loginID}}">
+    </div>
+    <div class="mb-3">
+        <label for="exampleDropdownFormPassword1" class="form-label">ログインパスワード</label>
+        <input type="password" class="form-control" id="loginPass" name="loginPass" placeholder="Password">
+    </div>
+    <div class="mb-3">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+            <label class="form-check-label" for="dropdownCheck">
+                Remember me
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">New around here? Sign up</a>
+<a class="dropdown-item" href="#">Forgot password?</a>
+
+
+
+{% endblock content %}

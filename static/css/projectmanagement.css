@@ -1,0 +1,138 @@
+/*================================================================================================= */
+/* 参考サイト
+    初心者向けCSS（スタイルシート）入門：基本的な書き方を総まとめ！
+    https://saruwakakun.com/html-css/basic/css#section3
+    基礎から学ぶ！HTMLにCSSを適用（読み込み）させる方法【初心者向け】
+    https://techacademy.jp/magazine/9647
+
+------------------------------------------------------------------------------------------------------*/
+
+/* jumbotron */
+/* header.jumbotron2 { */
+  /* background: url("/static/images/header03.png"); */
+  /* background-position: center center; */
+  /* background-size: cover; */
+  /* color: #fff; */
+/* } */
+
+/* header { */
+  /* background-color: rgb(255, 186, 122); */
+  /* color: #eee */
+/* } */
+
+.fm1 {
+  position:relative;
+  max-width:800px;	
+  margin-bottom:20px;
+}
+.bx1 {
+  height:50px;
+  width:550px;
+  padding:0 10px; 
+  border: 2px solid rgb(189, 196, 189); 
+  position:absolute; 
+  left:0;
+  top:0; 
+  /* border-radius:25px; */
+  outline:0;
+  background:#eee;	
+}
+.bx2 {
+  height:550px;
+  width:550px;
+  padding:0 10px; 
+  border: 2px solid rgb(189, 196, 189); 
+  position:absolute; 
+  left:0;
+  top:0; 
+  /* border-radius:25px; */
+  outline:0;
+  background:#eee;	
+}
+
+.btn1 {
+  height:50px;
+  width:50px;
+  position:relative; 
+  left:560px;/*アイコン左右の位置調整*/
+  top:0;
+  border: 2px solid rgb(189, 196, 189); 
+  color:#666;
+  font-size:20px;/*アイコンサイズ*/
+}
+.btn1 .fa-search {
+  font-size:20px;	
+  position:absolute;
+  top:30%;
+  left:30%;	
+}
+.btn1:hover {
+  color:#7fbfff;
+}
+
+.col-sm-6 {
+  width:100%;
+}
+
+.video {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+}
+
+.video iframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tp_content {
+  /* background-image: url("/static/images/jra.png"); */
+  background-color:rgba(255,255,255,0.8);
+  background-blend-mode:lighten;
+}
+
+/** 競馬ニュースcss ---------------------------------------------------**/
+.tp_bg_newsArea{
+  background-image: url("/static/images/jra.png");
+  color:rgb(5, 58, 5);
+  background-color:rgba(255,255,255,0.8);
+  background-blend-mode:lighten;
+}
+
+.tp_bg_newsAreaTitle{
+  color:rgb(255, 255, 255);
+  background-color:rgb(75, 117, 75);
+}
+
+.tp_bg_newsInfo{
+  background-color:rgb(225, 243, 225);
+}
+/** 競馬ニュースcss ---------------------------------------------------**/
+/** 埋め込みメディアcss ---------------------------------------------------**/
+
+.tp_thumbnailImg{
+  /* max-width:266px;  */
+  /* max-height:150px; */
+  width: 100%;
+}
+/** 埋め込みメディアcss ---------------------------------------------------**/
+
+.non_margen {
+  margin-top: 0;
+  margin-bottom:0;
+}
+.one_margen {
+  margin-top: 1;
+  margin-bottom:1;
+}
+
+/* jumbotron */
+header.jumbotron2 {
+  background: url("/static/images/header04.png");
+  background-position: center center;
+  background-size: cover;
+  color: #fff;
+}

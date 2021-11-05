@@ -1,0 +1,84 @@
+{% extends "app001_projectManagement/T000_Base.html" %}
+<!-- <html-->
+
+<!-- <body> -->
+
+
+{% block content %}
+
+<br>
+
+<div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-8">
+                <h6>課題を追加</h6>
+                <hr>
+                <div class="row justify-content-start">
+                    <div>
+                        <a href="{% url 'app001_projectManagement:taskCreate' projectInfo.URLID %}">
+                            <button type="button" class="btn btn-primary btn-block">課題を追加する</button>
+                        </a>
+                    </div>
+                </div>
+                <br>
+                <h6>課題一覧</h6>
+                <hr>
+                {% if tuple_taskList %}
+                {% for task in tuple_taskList %}
+                <div class="col-sm-6">
+                   <a class="text-decoration-none" href="{% url 'app001_projectManagement:taskDetail' request.session.urlID task.SEQ %}">
+                        <div class="card" type="button">
+                            <div class="card-body text-dark">
+                                No.{{ task.SEQ }}<br>
+                                <h5 class="card-title">{{ task.TASKTITLE }}</h5>
+                                <p class="card-text">担当者：{{ task.TANTSH }}  起票：{{ task.KIHYO_DATE | date:"y/m/d" }}  期限：{{ task.KIGN_DATE | date:"y/m/d" }}  状態：{{ task.TASKSTATUS_NAME }}</p>
+                            </div>
+                        </div>
+                    </a>
+                    <br>
+                </div>
+                {% endfor %}
+                <div class="row justify-content-start">
+                    <div>
+                        <a href="{% url 'app001_projectManagement:taskCreate' projectInfo.URLID %}">
+                            <button type="button" class="btn btn-primary btn-block">課題を追加する</button>
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-md-3">
+                <!-- 一押し動画エリア ------------------------------------------------------------------------------->
+                <div class="p-3 mb-2 bg-light text-dark">
+                    <h6>★今日の一押し★</h6>
+                    <a href="{{json_keibaInfo.json_newsVideoKametanInfo.newsVideo_kametani_url}}" target="_blank">
+                        <img class="tp_thumbnailImg"
+                            src="{{json_keibaInfo.json_newsVideoKametanInfo.newsVideo_kametani_imgSrc}}">
+                    </a>
+                </div>
+                <!-- 一押し動画エリア ------------------------------------------------------------------------------->
+                <!-- ニュースエリア ------------------------------------------------------------------------------->
+                <div class="p-3 mb-2 bg-light text-dark">
+                    <div class="">
+                        <h5 class="tp_bg_newsAreaTitle">★新着ニュース</h5>
+                        {% for json_newsInfo in json_keibaInfo.list_news_Info_gokum %}
+
+                        <a class="text-decoration-none text-dark" href="{{json_newsInfo.newsURL}}" target="_blank">
+                            <div class="tp_bg_newsArea">
+                                <p>{{json_newsInfo.newsTitle}}</p>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- ニュースエリア ------------------------------------------------------------------------------->
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    {% endblock content %}

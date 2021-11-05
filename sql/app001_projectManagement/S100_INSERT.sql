@@ -1,0 +1,4 @@
+#DB選択
+USE PMDB;
+
+INSERT INTO S100_PROJECT_ID VALUES ('19920101',0,current_timestamp(6));

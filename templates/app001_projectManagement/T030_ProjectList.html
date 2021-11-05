@@ -1,0 +1,78 @@
+{% extends "app001_projectManagement/T000_Base.html" %}
+<!-- <html-->
+
+<!-- <body> -->
+{% block content %}
+
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+            <!-- 領域調整 -->
+        </div>
+        <div class="col-md-8">
+            <form class="fm1" action="自分のサイトURL" method="get">
+                <input class="bx1" name="s" type="search" placeholder="フリーワードを入力" />
+                <button type="submit" class="btn1"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <!-- 領域調整 -->
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-8">
+                <h6>プロジェクト一覧</h6>
+                {% if tuple_T100_projectList %}
+                {% for projectInfo in tuple_T100_projectList %}
+                <div class="col-sm-6">
+                    <a class="text-decoration-none" href="{% url 'app001_projectManagement:projectTop' projectInfo.URLID %}">
+                        <div class="card" type="button">
+                            <div class="card-body text-dark">
+                                {{ projectInfo.PROJECTID }}<br>
+                                <h5 class="card-title">{{ projectInfo.PROJECTNAME }}</h5>
+                                <p class="card-text">{{ projectInfo.URLID }}</p>
+                            </div>
+                        </div>
+                    </a>
+                    <br>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col-md-3">
+                <!-- 一押し動画エリア ------------------------------------------------------------------------------->
+                <div class="p-3 mb-2 bg-light text-dark">
+                    <h6>★今日の一押し★</h6>
+                    <a href="{{json_keibaInfo.json_newsVideoKametanInfo.newsVideo_kametani_url}}" target="_blank">
+                        <img class="tp_thumbnailImg"
+                            src="{{json_keibaInfo.json_newsVideoKametanInfo.newsVideo_kametani_imgSrc}}">
+                    </a>
+                </div>
+                <!-- 一押し動画エリア ------------------------------------------------------------------------------->
+                <!-- ニュースエリア ------------------------------------------------------------------------------->
+                <div class="p-3 mb-2 bg-light text-dark">
+                    <div class="">
+                        <h5 class="tp_bg_newsAreaTitle">★新着ニュース</h5>
+                        {% for json_newsInfo in json_keibaInfo.list_news_Info_gokum %}
+
+                        <a class="text-decoration-none text-dark" href="{{json_newsInfo.newsURL}}" target="_blank">
+                            <div class="tp_bg_newsArea">
+                                <p>{{json_newsInfo.newsTitle}}</p>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- ニュースエリア ------------------------------------------------------------------------------->
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    {% endblock content %}
